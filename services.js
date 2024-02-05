@@ -11,7 +11,7 @@ gsap.timeline({
 
   gsap.set(".aside_item",{opacity:0, y: 50})
   ScrollTrigger.batch(".aside_item", {
-    start: "top 60%",
+    start: "top 80%",
     onEnter: batch => gsap.to(batch, {y: 0, opacity: 1, ease:"power3.out", stagger: 0.1, duration: 1}),
   });
 
