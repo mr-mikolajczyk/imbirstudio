@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     gsap.set(".home_services_item",{opacity:0, yPercent: 20})
     ScrollTrigger.batch(".home_services_item", {
-      start: "top 90%",
+      start: "top 70%",
       onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, ease:"power3.out", stagger: 0.1, duration: 1}),
     });
 
