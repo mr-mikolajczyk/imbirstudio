@@ -47,7 +47,7 @@
       .timeline({
         scrollTrigger: {
           trigger: item,
-          start: "top 95%",
+          start: "top 85%",
           toggleActions: "play none none none",
         },
       })
@@ -64,7 +64,7 @@
       .timeline({
         scrollTrigger: {
           trigger: item,
-          start: "top 70%",
+          start: "top 85%",
         },
       })
       .from(item, {
