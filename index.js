@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function() {
     gsap.set(".home_portfolio_item",{opacity:0, yPercent: 20})
     ScrollTrigger.batch(".home_portfolio_item", {
       start: "top 85%",
-      markers: true,
       onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, ease:"power3.out", stagger: 0.1}),
     });
 
