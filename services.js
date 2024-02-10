@@ -1,13 +1,13 @@
-gsap.timeline({
-    scrollTrigger: {
-      trigger: ".section_services_hero",
-      toggleActions: "play none none reverse",
+// gsap.timeline({
+//     scrollTrigger: {
+//       trigger: ".section_services_hero",
+//       toggleActions: "play none none reverse",
   
-      toggleClass: { targets: "body", className: "services" },
-      start: "top 80",
-      end: "bottom 80",
-    },
-  });
+//       toggleClass: { targets: "body", className: "services" },
+//       start: "top 80",
+//       end: "bottom 80",
+//     },
+//   });
 
   gsap.set(".aside_item",{opacity:0, y: 50})
   ScrollTrigger.batch(".aside_item", {
