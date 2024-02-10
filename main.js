@@ -15,6 +15,16 @@
   }
   requestAnimationFrame(raf);
   
+  const body = document.querySelector("body"),
+  themeToggle = document.querySelector("#theme-toggle"),
+  currentTheme = localStorage.getItem("theme");
+currentTheme && (body.setAttribute("data-theme", currentTheme), "dark" === currentTheme && themeToggle.classList.add("active")), themeToggle.addEventListener("click", () => {
+  let e = body.getAttribute("data-theme"),
+    t = "light" === e ? "dark" : "light";
+  body.setAttribute("data-theme", t), themeToggle.classList.toggle("active"), localStorage.setItem("theme", t)
+});
+
+
   gsap.registerPlugin(ScrollTrigger);
   
    //navbar

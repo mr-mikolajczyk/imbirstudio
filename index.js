@@ -64,8 +64,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.addEventListener("DOMContentLoaded", (function setGridBottomPadding() {
       const t = document.querySelector(".home_portfolio_item").offsetHeight;
-      document.querySelector(".home_portfolio-list").style.padding = `0 0 ${t/2}px 0`
-
+    
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        document.querySelector(".home_portfolio-list").style.padding = `0 0 ${t/2}px 0`;
+      }
+    
       window.addEventListener("resize", setGridBottomPadding);
     }));
     
