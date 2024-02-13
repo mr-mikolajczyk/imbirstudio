@@ -56,19 +56,9 @@ document.addEventListener("DOMContentLoaded", function() {
       onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, ease:"power3.out", stagger: 0.1, duration: 1}),
     });
 
-    gsap.set(".home_portfolio_item",{opacity:0, yPercent: 20})
-    ScrollTrigger.batch(".home_portfolio_item", {
-      start: "top 85%",
-      onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, ease:"power3.out", stagger: 0.1}),
-    });
-
-    document.addEventListener("DOMContentLoaded", (function setGridBottomPadding() {
-      const t = document.querySelector(".home_portfolio_item").offsetHeight;
-    
-      if (window.matchMedia("(min-width: 768px)").matches) {
-        document.querySelector(".home_portfolio-list").style.padding = `0 0 ${t/2}px 0`;
-      }
-    
-      window.addEventListener("resize", setGridBottomPadding);
-    }));
+    // gsap.set(".home_portfolio_item",{opacity:0, yPercent: 20})
+    // ScrollTrigger.batch(".home_portfolio_item", {
+    //   start: "top 85%",
+    //   onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, ease:"power3.out", stagger: 0.1}),
+    // });
     

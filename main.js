@@ -84,19 +84,6 @@ currentTheme && (body.setAttribute("data-theme", currentTheme), "dark" === curre
       });
   });
   
-  gsap.utils.toArray(".home_portfolio_img").forEach((el, i) => {
-    let portfolioImg = gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: "0% 90%",
-        end: "90% 10%",
-        scrub: 2.5,
-      },
-    });
-    portfolioImg.to(el, {
-      yPercent: -10,
-    });
-  });
   
   $(function() {  
     $('.button')
@@ -121,4 +108,14 @@ currentTheme && (body.setAttribute("data-theme", currentTheme), "dark" === curre
   
   showYear.forEach((element) => {
     element.innerText = year;
+  });
+
+
+  const scrollToTopButton = document.querySelector('.footer-top');
+
+  scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   });
