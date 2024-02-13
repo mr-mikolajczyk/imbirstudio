@@ -56,9 +56,25 @@ document.addEventListener("DOMContentLoaded", function() {
       onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, ease:"power3.out", stagger: 0.1, duration: 1}),
     });
 
-    // gsap.set(".home_portfolio_item",{opacity:0, yPercent: 20})
-    // ScrollTrigger.batch(".home_portfolio_item", {
-    //   start: "top 85%",
-    //   onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, ease:"power3.out", stagger: 0.1}),
-    // });
-    
+
+
+// Ustawienie źródeł wideo
+const videoSources = {
+  mobile: "https://imbirvideowww.s3.eu-central-1.amazonaws.com/Video_Case/Showreel_10x16.mp4",
+  desktop: "https://imbirvideowww.s3.eu-central-1.amazonaws.com/Video_Case/Showreel_16x9_nowy.mov",
+};
+
+window.addEventListener("resize", () => {
+  // Pobieranie aktualnej szerokości viewportu
+  const viewportWidth = window.innerWidth;
+
+  // Wybór źródła wideo na podstawie szerokości viewportu
+  let videoSource = videoSources.mobile;
+  if (viewportWidth >= 768) {
+    videoSource = videoSources.desktop;
+  }
+
+  // Ustawienie źródła dla elementu wideo
+  const videoElement = document.getElementById("showreel-video");
+  videoElement.src = videoSource;
+});
