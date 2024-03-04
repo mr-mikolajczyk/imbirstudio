@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function() {
       width: "100%",
       borderRadius: `${0}rem`,
       ease: "power1.in",
+    }, 0)
+    .from(".scroll-wrapper",{
+      yPercent:1000,
     }, 0);
   gsap
     .timeline({
@@ -77,4 +80,9 @@ window.addEventListener("resize", () => {
   // Ustawienie źródła dla elementu wideo
   const videoElement = document.getElementById("showreel-video");
   videoElement.src = videoSource;
+});
+
+$(".svg-code-logo").each(function (index) {
+  let svgCode = $(this).text();
+  $(svgCode).insertAfter($(this));
 });
