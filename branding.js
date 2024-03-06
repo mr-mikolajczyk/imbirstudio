@@ -11,6 +11,19 @@ let pS = gsap.timeline({
     xPercent: -10
   })
 
+  gsap.from(".service_about_wrapper *",{
+    opacity:0,
+    yPercent:15,
+    stagger:0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: ".service_about_wrapper",
+        toggleActions: "play none none reverse",
+        start:"0% 85%"
+     }
+});
+
+
 let sections = gsap.utils.toArray(".branding_scroll-item");
 
 let scrollTween = gsap.to(sections, {
@@ -173,8 +186,8 @@ let logoText = gsap
         scrollTrigger: {
           trigger: ".timeline-component",
           start: "top 75%",
-          end: "bottom top",
-          scrub:1, // smooth scrubbing, takes 1 second to "catch up" to the scrollba
+          end: "bottom center",
+          scrub:2, // smooth scrubbing, takes 1 second to "catch up" to the scrollba
         },
       });
     
@@ -182,10 +195,10 @@ let logoText = gsap
         height: "100%"
       })
 
-      gsap.set(".text-rich-text p, .text-rich-text li",{opacity:0, yPercent:20})
-ScrollTrigger.batch(".text-rich-text p, .text-rich-text li", {
+      gsap.set(".timeline_content *",{opacity:0, yPercent:20})
+ScrollTrigger.batch(".timeline_content *", {
   start: "top 90%",
-  onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, stagger: 0.1}),
+  onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, stagger: 0.2}),
 });
 
      
