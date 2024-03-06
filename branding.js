@@ -21,7 +21,7 @@ let scrollTween = gsap.to(sections, {
       pin: true,
       scrub: 2,
     //   snap: directionalSnap(1 / (sections.length - 1)),
-      end: "+=2000"
+      end: "+=3000"
     }
   });
 
@@ -35,7 +35,7 @@ let scrollTween = gsap.to(sections, {
       
     }
   })
-  .from(".branding_strategy-illustration", { rotation: 270, yPercent:75, xPercent:150, ease: "power2.out"})
+  .to(".branding_strategy-illustration", { rotation: 270, yPercent:15, xPercent:-50, ease: "power2.out"})
   
   gsap.from("#strategy .heading-style-h2, #strategy p",{
     opacity:0,
@@ -54,7 +54,7 @@ let scrollTween = gsap.to(sections, {
     scrollTrigger: {
       trigger: "#logo",
       containerAnimation: scrollTween,
-      start: "-25% center",
+      start: "left center",
       end: "right center",
       scrub: 1.5
     }
@@ -63,7 +63,7 @@ let scrollTween = gsap.to(sections, {
     backgroundColor:"#64704b",  ease: "power4.out"
   })
   .from(".branding_animation-grid",{
-    opacity:0.25,  ease: "power4.out"
+    opacity:0.35,  ease: "power4.out"
   },0)
   .to(".branding_animation-grid", { rotation: -90, ease: "power2.out"},0)
   .to(".branding-logo-element", { borderRadius: `${1}rem`, rotation: 225, scale: 1.02, ease: "power2.out",},0);
@@ -73,7 +73,7 @@ let logoText = gsap
         scrollTrigger:{
         trigger: "#logo",
         containerAnimation: scrollTween,
-        start:"25% center",
+        start:"10% center",
         end: "100% center",
         toggleActions: "play none none reverse",
     }
@@ -127,22 +127,22 @@ let logoText = gsap
     scrollTrigger: {
       trigger: "#communication",
       containerAnimation: scrollTween,
-      start: "left center",
+      start: "20% center",
       end: "right center",
-      toggleActions: "play none none reverse",      
+      toggleActions: "play none none reverse", 
     }
   })
   .set(path, {strokeDashoffset: pathLenght})
-  .from(".branding_comunication-illustration", {rotate: 180, ease: "power2.inOut", duration: 0.5},0)
-  .fromTo(path,{strokeDashoffset: pathLenght}, {strokeDashoffset: 0, ease: "power3.inOut", duration: 1},0.1)
-  .from (".branding-letter",{opacity:0, stagger: 0.1},0.35)
+  .from(".branding_comunication-illustration", {rotate: 180, ease: "power2.inOut", duration: 0.75},0)
+  .fromTo(path,{strokeDashoffset: pathLenght}, {strokeDashoffset: 0, ease: "power3.inOut", duration: 1.25},0.15)
+  .from (".branding-letter",{opacity:0, stagger: 0.05},0.75)
 
   let communicationText = gsap
   .timeline({
       scrollTrigger:{
       trigger: "#communication",
       containerAnimation: scrollTween,
-      start:"25% center",
+      start:"5% center",
       end: "100% center",
       toggleActions: "play none none reverse",
   }
@@ -173,8 +173,7 @@ let logoText = gsap
         scrollTrigger: {
           trigger: ".timeline-component",
           start: "top 75%",
-          end: "bottom center",
-          markers:true,
+          end: "bottom top",
           scrub:1, // smooth scrubbing, takes 1 second to "catch up" to the scrollba
         },
       });
@@ -182,5 +181,11 @@ let logoText = gsap
       hiw.to(".timeline-line", {
         height: "100%"
       })
+
+      gsap.set(".text-rich-text p, .text-rich-text li",{opacity:0, yPercent:20})
+ScrollTrigger.batch(".text-rich-text p, .text-rich-text li", {
+  start: "top 90%",
+  onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, stagger: 0.1}),
+});
 
      
