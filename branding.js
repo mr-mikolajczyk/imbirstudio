@@ -48,19 +48,20 @@ let scrollTween = gsap.to(sections, {
       
     }
   })
-  .to(".branding_strategy-illustration", { rotation: 270, yPercent:15, xPercent:-50, ease: "power2.out"})
+  .from(".branding_strategy-illustration",{color: "#64704b", yPercent:50, xPercent:-75, opacity: 0.35, ease: "power2.out"})
+  .to(".branding_strategy-illustration", { rotation: 180, ease: "power2.out"},0)
   
   gsap.from("#strategy .heading-style-h2, #strategy p",{
     opacity:0,
-    yPercent:15,
+    yPercent:-15,
     stagger:0.1,
     ease: "power2.out",
     scrollTrigger: {
-        trigger: "#strategy",
+        trigger: "#strategy .branding_scroll-item_content",
         toggleActions: "play none none reverse",
-        start:"0% 75%",
+        start:"0% 85%",
      }
-});
+})
 
   let logo = gsap
   .timeline({
@@ -199,6 +200,37 @@ let logoText = gsap
 ScrollTrigger.batch(".timeline_content *", {
   start: "top 90%",
   onEnter: batch => gsap.to(batch, {yPercent: 0, opacity: 1, stagger: 0.2}),
+});
+
+
+const portfolioItems = document.querySelectorAll('.home_portfolio_item');
+
+portfolioItems.forEach(item => {
+  const videoElement = item.querySelector('video'); // Target video element within item
+
+  if (videoElement) { // Ensure video element exists
+    item.addEventListener('mouseover', () => {
+      portfolioItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.add('inactive');
+        }
+      });
+
+      videoElement.play(); // Play video
+    });
+
+    item.addEventListener('mouseout', () => {
+      portfolioItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('inactive');
+        }
+      });
+
+      videoElement.pause(); // Pause video
+    });
+  } else {
+    console.warn(`Video element not found in item: ${item}`);
+  }
 });
 
      
