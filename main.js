@@ -1,29 +1,21 @@
 gsap.registerPlugin(ScrollTrigger);
-// const lenis = new Lenis({
-//   duration: 1.2,
-//   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-//   direction: "vertical",
-//   gestureDirection: "vertical",
-//   smooth: true,
-//   mouseMultiplier: 1,
-//   smoothTouch: false,
-//   touchMultiplier: 2,
-//   infinite: false,
-// });
-// function raf(time) {
-//   lenis.raf(time);
-//   requestAnimationFrame(raf);
-// }
-// requestAnimationFrame(raf);
-const lenis = new Lenis()
+// LENIS SMOOTH SCROLL
+let lenis;
+if (Webflow.env("editor") === undefined) {
+  lenis = new Lenis({
+    lerp: 0.1,
+    mouseMultiplier: 0.6,
+    gestureOrientation: "vertical",
+    normalizeWheel: false,
+    smoothTouch: false
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
 
-lenis.on('scroll', ScrollTrigger.update)
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000)
-})
-
-gsap.ticker.lagSmoothing(0)
 
 const body = document.querySelector("body"),
   themeToggle = document.querySelector("#theme-toggle"),
