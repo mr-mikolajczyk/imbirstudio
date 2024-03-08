@@ -59,7 +59,7 @@ ScrollTrigger.batch(".home_services_item", {
   onEnter: batch => gsap.to(batch, { yPercent: 0, opacity: 1, ease: "power3.out", stagger: 0.1, duration: 1 }),
 });
 
-
+let viewportWidth = window.innerWidth
 document.addEventListener('DOMContentLoaded', function () {
   // Ustawienie źródeł wideo
   const videoSources = {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Store the window width
-  let viewportWidth = window.innerWidth
+
 
   // Resize Event
   window.addEventListener("resize", function () {
