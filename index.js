@@ -66,21 +66,41 @@ const videoSources = {
   mobile: "https://imbirvideowww.s3.eu-central-1.amazonaws.com/Video_Case/Showreel_10x16.mp4",
   desktop: "https://imbirvideowww.s3.eu-central-1.amazonaws.com/Video_Case/Showreel_16x9_nowy.mov",
 };
+const videoElement = document.getElementById("showreel-video");
+const viewportWidth = window.innerWidth;
 
-window.addEventListener("resize", () => {
-  // Pobieranie aktualnej szerokości viewportu
-  const viewportWidth = window.innerWidth;
+// window.addEventListener("resize", () => {
+//   // Wybór źródła wideo na podstawie szerokości viewportu
+//   let videoSource = videoSources.mobile;
+//   if (viewportWidth >= 768) {
+//     videoSource = videoSources.desktop;
+//   }
+//   // Ustawienie źródła dla elementu wideo
+  
+// });
 
-  // Wybór źródła wideo na podstawie szerokości viewportu
-  let videoSource = videoSources.mobile;
-  if (viewportWidth >= 768) {
-    videoSource = videoSources.desktop;
-  }
+document.addEventListener('DOMContentLoaded', function() {
 
-  // Ustawienie źródła dla elementu wideo
-  const videoElement = document.getElementById("showreel-video");
-  videoElement.src = videoSource;
-});
+  // Store the window width
+  var windowWidth = window.innerWidth
+
+  // Resize Event
+  window.addEventListener("resize", function() {
+
+      // Check window width has actually changed and it's not just iOS triggering a resize event on scroll
+      if (window.innerWidth != windowWidth) {
+
+          // Update the window width for next time
+          windowWidth = window.innerWidth
+
+          videoElement.src = videoSource;
+
+      }
+
+      // Otherwise do nothing
+  })
+
+})
 
 $(".svg-code-logo").each(function (index) {
   let svgCode = $(this).text();
