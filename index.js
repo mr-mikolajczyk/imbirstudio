@@ -1,3 +1,30 @@
+const text = new SplitType('[data-split]', { types: 'lines, words' })
+
+
+// Animate characters into view with a stagger effect
+let heroT = gsap.timeline()
+heroT.from(text.words, {
+  opacity: 0,
+  delay:0.6,
+  yPercent: 75,
+  ease: "power1.out",
+  stagger: { amount: 0.2},
+})
+ .from(".hero_component p",{
+  opacity: 0,
+  yPercent: 75,
+  ease: "power1.out"
+},0.8)
+.from(".hero_component .button",{
+  opacity: 0,
+  yPercent: 75,
+  ease: "power1.out"
+},0.9)
+ .from("#showreel-video",{
+  opacity:0,
+  duration: 1,
+  ease: "power1.out",
+},0.8);
 document.addEventListener("DOMContentLoaded", function () {
   let splide = new Splide(".splide", {
     type: "loop",
@@ -59,21 +86,30 @@ ScrollTrigger.batch(".home_services_item", {
   onEnter: batch => gsap.to(batch, { yPercent: 0, opacity: 1, ease: "power3.out", stagger: 0.1, duration: 1 }),
 });
 
-let viewportWidth = window.innerWidth
+$(".svg-code-logo").each(function (index) {
+  let svgCode = $(this).text();
+  $(svgCode).insertAfter($(this));
+});
+
+
+const videoSources = {
+  mobile: "https://imbirvideowww.s3.eu-central-1.amazonaws.com/Video_Case/Showreel_10x16.mp4",
+  desktop: "https://imbirvideowww.s3.eu-central-1.amazonaws.com/Video_Case/Showreel_16x9_nowy.mov",
+};
+const videoElement = document.getElementById("showreel-video");
 document.addEventListener('DOMContentLoaded', function () {
+  let viewportWidth = window.innerWidth; // Assign value inside the event listener
+
+  
   // Ustawienie źródeł wideo
-  const videoSources = {
-    mobile: "https://imbirvideowww.s3.eu-central-1.amazonaws.com/Video_Case/Showreel_10x16.mp4",
-    desktop: "https://imbirvideowww.s3.eu-central-1.amazonaws.com/Video_Case/Showreel_16x9_nowy.mov",
-  };
-  const videoElement = document.getElementById("showreel-video");
-  let videoSource = videoSources.mobile;
-  if (viewportWidth >= 768) {
-    videoSource = videoSources.desktop;
+  let videoSource = videoSources.desktop;
+  if (viewportWidth <= 768) {
+    videoSource = videoSources.mobile;
+    videoElement.src = videoSource;
   }
 
   // Store the window width
-
+  viewportWidth = window.innerWidth
 
   // Resize Event
   window.addEventListener("resize", function () {
@@ -83,7 +119,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Update the window width for next time
       viewportWidth = window.innerWidth
-
+      let videoSource = videoSources.desktop;
+      if (viewportWidth <= 768) {
+        videoSource = videoSources.mobile;
+        videoElement.src = videoSource;
+      }
       videoElement.src = videoSource;
 
     }
@@ -92,8 +132,3 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
 })
-
-$(".svg-code-logo").each(function (index) {
-  let svgCode = $(this).text();
-  $(svgCode).insertAfter($(this));
-});
